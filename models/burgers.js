@@ -8,7 +8,7 @@ const burger = {
         })
     }, 
     insertOne: (cb, burger_name) => {
-        orm.insertOne('burgers', 'burger_name, devoured',`'${burger_name}', true`, (results) => {
+        orm.insertOne('burgers', 'burger_name, devoured',`'${burger_name}', false`, (results) => {
             cb(results)
         })
     },
