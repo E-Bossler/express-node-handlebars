@@ -1,0 +1,44 @@
+<div id='burgerPic'>
+    <img src="/assets/images/burger-logo.jpeg" />
+</div>
+
+<div>
+    <h2>BURGERS YOU CAN EAT</h2>
+    <div class='notDevoured'>
+        <ul>
+            {{#each burgers }}
+                {{#unless devoured}}
+                    <li>
+                        {{ burger_name }}
+                    </li>
+                    <button class="burgerEatButton" data-id="{{ id }}">
+                        Eat Burger
+                    </button>
+                {{/unless}}
+            {{/each}}
+        </ul>
+    </div>
+    <h2>BURGERS YOU HAVE EATEN</h2>
+    <div class='devoured'>
+        <ul>
+            {{#each burgers }}
+                {{#if devoured}}
+                    <li>
+                        {{ burger_name }}
+                    </li>
+                {{/if}}
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+<h2>Add a burger</h2>
+<form>
+
+  <div class="form-group">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="burger" name="name">
+  </div>
+
+  <button id="submitBurger" type="submit">Add Burger</button>
+</form>

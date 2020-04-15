@@ -7,12 +7,12 @@ const burger = {
             cb(results)
         })
     }, 
-    insertOne: (cb, burger_name) => {
+    insertOne: (burger_name, cb) => {
         orm.insertOne('burgers', 'burger_name, devoured',`'${burger_name}', false`, (results) => {
             cb(results)
         })
     },
-    updateOne: (cb, id) => {
+    updateOne: (id, cb) => {
         orm.updateOne('burgers', 'devoured', id, (results) => {
             cb(results)
         })

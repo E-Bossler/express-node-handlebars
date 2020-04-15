@@ -2,15 +2,15 @@ const express = require('express');
 const burger = require('../models/burgers');
 const router = express.Router();
 
-router.get(
-    '/',
-    (req, res) => {
-        res.send('Hello World')
-    }
-)
+// router.get(
+//     '/',
+//     (req, res) => {
+//         res.send('Hello World')
+//     }
+// )
 
 router.get(
-    '/all',
+    '/api/all',
     (req, res) => {
         // console.log(req);
         // console.log(res);
@@ -23,22 +23,22 @@ router.get(
     }
 );
 
-router.get(
-    '/burgers/:burger_name',
+router.post(
+    '/api/burgers/add',
     (req, res) => {
-        console.log(req.params);
-        // console.log(res);
+        // console.log(req.params);
+        console.log(req.body);
         burger.insertOne(
+            req.body.burger_name,
             results => {
                 res.json(results)
-            },
-            req.params.burger_name
+            }
         )
     }
-)
+);
 
-router.get(
-    '/burgers/:id',
+router.put(
+    '/api/burgers/:id',
     (req,res) => {
         // console.log(req);
         // console.log(res);
@@ -46,13 +46,24 @@ router.get(
         console.log(condition);
         // console.log(req.params)
         burger.updateOne(
+            req.params.id,
             results => {
                 console.log(results);
-            },
-            req.params.id
+                res.json(results);
+            }
         )
     }
-)
+);
 
+router.get('/',(req,res) => {
+    
+    burger.selectAll(results => {
+        const renderObject = {
+            'burgers': results
+        }
+        res.render('index', renderObject)
+    })
+    
+})
 
 module.exports = router;
