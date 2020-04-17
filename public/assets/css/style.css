@@ -1,3 +1,8 @@
+body {
+    background-color: blanchedalmond;
+}
+
 .burgerPic {
-    height: 150px;
+    max-height: 150px;
+    
 }
